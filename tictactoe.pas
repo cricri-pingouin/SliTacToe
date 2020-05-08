@@ -34,7 +34,7 @@ type
   end;
 
 const
-  IconSize = 154; //Size of a brick in pixels
+  IconSize = 154; //Size of an icon in pixels
   IconSpace = 3;
   P1Val = 1;
   P2Val = 4;
@@ -86,7 +86,7 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  //Initialise shapes images: 0-8: uncovered, 9=blank, 10=flag, 11=maybe
+  //Initialise shapes images: 0=empty; 1=cross; 2=donut
   New(IconPic[0]);
   IconPic[0]^ := imgEmpty.Picture.Bitmap;
   New(IconPic[1]);
@@ -109,8 +109,7 @@ begin
   end;
   PosX := X div (IconSize + IconSpace);
   PosY := Y div (IconSize + IconSpace);
-  //ShowMessage('Clicked X=' + IntToStr(PosX) + '; Y=' + IntToStr(PosY) + ', status =' + IntToStr(BoardStatus[PosX, PosY])); //debug
-  //Check BoardSelected for out of bound
+  //Check square not played
   if (BoardStatus[PosX, PosY] > 0) then
     Exit;
   //Clicking a square
@@ -157,7 +156,7 @@ begin
         if (BoardStatus[i, j] = 0) then  //Can play here
         begin
           BoardStatus[i, j] := CPUVal; //What if CPU plays here
-          if (CheckWin > 0) then       //Win: play there
+          if (CheckWin > 0) then       //Win: play to win there
           begin
             if P1Playing then
               DrawIcon(i, j, 1)
@@ -167,7 +166,7 @@ begin
             Exit;
           end
           else
-            BoardStatus[i, j] := 0;    //Not a win: revert and try another
+            BoardStatus[i, j] := 0;    //Not a win: revert and try next
         end;
       end;
     //Check if opponent can win
@@ -177,7 +176,7 @@ begin
         if (BoardStatus[i, j] = 0) then  //Can play here
         begin
           BoardStatus[i, j] := OppVal; //What if opponent plays here
-          if (CheckWin > 0) then       //Win: play there
+          if (CheckWin > 0) then       //Win: play to block there
           begin
             if P1Playing then
               DrawIcon(i, j, 1)
@@ -199,7 +198,7 @@ begin
             BoardStatus[i, j] := 0;    //Not a win, revert and try another
         end;
       end;
-    //Reached here: CPU can't win and human can't win: play random free square
+    //Reached here: CPU can't win and human can't win, play random free square
     repeat
       i := Random(3);
       j := Random(3);
@@ -270,7 +269,7 @@ begin
   GameRunning := True;
   if P1CPU then
   begin
-    //CPU plays centre of board
+    //CPU starts: always play centre of board
     DrawIcon(1, 1, 1);
     BoardStatus[1, 1] := P1Val;
     Dec(SquaresLeft);
