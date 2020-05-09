@@ -149,6 +149,19 @@ begin
   if P1CPU or P2CPU then
   begin
     GameRunning := False; //Prevents human playing
+    //Centre square taken?
+    if (BoardStatus[1, 1] = 0) then  //Can play here
+    begin
+      BoardStatus[1, 1] := CPUVal;
+      if P1Playing then
+        DrawIcon(1, 1, 1)
+      else
+        DrawIcon(1, 1, 2);
+      Dec(SquaresLeft);
+      P1Playing := not P1Playing;
+      GameRunning := True;  //Human can play
+      Exit;
+    end;
     //Check if CPU can win
     for i := 0 to 2 do
       for j := 0 to 2 do
