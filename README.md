@@ -5,9 +5,9 @@ A Tic Tac Toe game, 2 players or 1 player vs CPU. Written in Turbo Delphi. AI is
 v1.1, 16/08/2021
 ----------------
 CPU now has 4 levels of strength to choose from.
-Level 1: plays randomly
-Level 2: will play for win if it can, and block a user win, otherwise plays randomly
-Level 3: as level 2 but will play centre if available
-Level 4: as level 3 but will play centre then favour corners if available
+- Level 1: plays randomly throughout the game
+- Level 2: will play for win if it can win at the current move, and block a user win if user has a winning move, otherwise plays randomly
+- Level 3: as level 2 but will first play centre if available (which can only happen on CPU first move obviously)
+- Level 4: as level 3 but if none of the scenarios listed above apply, will favour an available corner (level 3 would play randomly and not favour a corner over a side)
 
-CPU level is saved in a .ini file. If not present, will default to level 1.
+CPU level is saved in a .ini file on exit. If .ini not present on load, will default to level 1.
