@@ -4,7 +4,7 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Sli Tac Toe'
-  ClientHeight = 541
+  ClientHeight = 566
   ClientWidth = 474
   Color = clBlack
   TransparentColorValue = clBtnFace
@@ -86,6 +86,7 @@ object Form1: TForm1
     000000000000000000000000000000000000000000000000000000000000}
   Menu = mm1
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   OnMouseDown = FormMouseDown
   PixelsPerInch = 120
@@ -998,15 +999,15 @@ object Form1: TForm1
     Top = 8
     object Newgame1: TMenuItem
       Caption = 'Game'
-      object mnuHvsH: TMenuItem
+      object mniHvsH: TMenuItem
         Caption = 'Human vs human'
         ShortCut = 112
-        OnClick = mnuHvsHClick
+        OnClick = mniHvsHClick
       end
-      object mnuHvsC: TMenuItem
+      object mniHvsC: TMenuItem
         Caption = 'Human vs CPU'
         ShortCut = 113
-        OnClick = mnuHvsCClick
+        OnClick = mniHvsCClick
       end
       object mniCvsH: TMenuItem
         Caption = 'CPU vs human'
@@ -1019,6 +1020,26 @@ object Form1: TForm1
       object mniExit: TMenuItem
         Caption = 'Exit'
         OnClick = mniExitClick
+      end
+    end
+    object mniLevel: TMenuItem
+      Caption = 'CPU level'
+      Checked = True
+      object mniLevel1: TMenuItem
+        Caption = 'Level 1'
+        OnClick = mniLevel1Click
+      end
+      object mniLevel2: TMenuItem
+        Caption = 'Level 2'
+        OnClick = mniLevel2Click
+      end
+      object mniLevel3: TMenuItem
+        Caption = 'Level 3'
+        OnClick = mniLevel3Click
+      end
+      object mniLevel4: TMenuItem
+        Caption = 'Level 4'
+        OnClick = mniLevel4Click
       end
     end
   end
