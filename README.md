@@ -9,3 +9,5 @@ Level 1: plays randomly
 Level 2: will play for win if it can, and block a user win, otherwise plays randomly
 Level 3: as level 2 but will play centre if available
 Level 4: as level 3 but will play centre then favour corners if available
+
+CPU level is saved in a .ini file. If not present, will default to level 1.
