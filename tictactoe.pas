@@ -23,6 +23,7 @@ type
     mniLevel2: TMenuItem;
     mniLevel3: TMenuItem;
     mniLevel4: TMenuItem;
+    mniLevel5: TMenuItem;
     procedure DrawIcon(X, Y, SquareIndex: Integer);
     procedure NewGame();
     procedure FormCreate(Sender: TObject);
@@ -36,6 +37,7 @@ type
     procedure mniLevel2Click(Sender: TObject);
     procedure mniLevel3Click(Sender: TObject);
     procedure mniLevel4Click(Sender: TObject);
+    procedure mniLevel5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,7 +99,9 @@ begin
   else if CPUlevel = 3 then
     mniLevel3.Checked := true
   else if CPUlevel = 4 then
-    mniLevel4.Checked := true;
+    mniLevel4.Checked := true
+  else if CPUlevel = 5 then
+    mniLevel5.Checked := true;
       //Initialise shapes images: 0=empty; 1=cross; 2=donut
   New(IconPic[0]);
   IconPic[0]^ := imgEmpty.Picture.Bitmap;
@@ -276,6 +280,55 @@ begin
         i := 2;
         j := 2;
       end;
+      if (CPUlevel = 5) then
+      begin
+        if (BoardStatus[1, 1] = CPUVal) and (BoardStatus[0, 0] = OppVal) and (BoardStatus[2, 2] = OppVal) then
+        begin
+          if (BoardStatus[0, 1] = 0) then
+          begin
+            i := 0;
+            j := 1;
+          end
+          else if (BoardStatus[1, 0] = 0) then
+          begin
+            i := 1;
+            j := 0;
+          end
+          else if (BoardStatus[1, 2] = 0) then
+          begin
+            i := 1;
+            j := 2;
+          end
+          else if (BoardStatus[2, 1] = 0) then
+          begin
+            i := 2;
+            j := 1;
+          end;
+        end;
+        if (BoardStatus[1, 1] = CPUVal) and (BoardStatus[0, 2] = OppVal) and (BoardStatus[2, 0] = OppVal) then
+        begin
+          if (BoardStatus[0, 1] = 0) then
+          begin
+            i := 0;
+            j := 1;
+          end
+          else if (BoardStatus[1, 0] = 0) then
+          begin
+            i := 1;
+            j := 0;
+          end
+          else if (BoardStatus[1, 2] = 0) then
+          begin
+            i := 1;
+            j := 2;
+          end
+          else if (BoardStatus[2, 1] = 0) then
+          begin
+            i := 2;
+            j := 1;
+          end;
+        end;
+      end;
       if i <> 9 then
       begin
         BoardStatus[i, j] := CPUVal;
@@ -289,6 +342,7 @@ begin
         Exit;
       end;
     end;
+
     //Reached here: CPU can't win and human can't win, play random free square
     repeat
       i := Random(3);
@@ -350,6 +404,7 @@ begin
   mniLevel2.Checked := False;
   mniLevel3.Checked := False;
   mniLevel4.Checked := False;
+  mniLevel5.Checked := False;
   CPUlevel := 1;
 end;
 
@@ -359,6 +414,7 @@ begin
   mniLevel2.Checked := True;
   mniLevel3.Checked := False;
   mniLevel4.Checked := False;
+  mniLevel5.Checked := False;
   CPUlevel := 2;
 end;
 
@@ -368,6 +424,7 @@ begin
   mniLevel2.Checked := False;
   mniLevel3.Checked := True;
   mniLevel4.Checked := False;
+  mniLevel5.Checked := False;
   CPUlevel := 3;
 end;
 
@@ -377,7 +434,18 @@ begin
   mniLevel2.Checked := False;
   mniLevel3.Checked := False;
   mniLevel4.Checked := True;
+  mniLevel5.Checked := False;
   CPUlevel := 4;
+end;
+
+procedure TForm1.mniLevel5Click(Sender: TObject);
+begin
+  mniLevel1.Checked := False;
+  mniLevel2.Checked := False;
+  mniLevel3.Checked := False;
+  mniLevel4.Checked := False;
+  mniLevel5.Checked := True;
+  CPUlevel := 5;
 end;
 
 procedure TForm1.NewGame();

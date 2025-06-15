@@ -4,13 +4,13 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Sli Tac Toe'
-  ClientHeight = 566
-  ClientWidth = 474
+  ClientHeight = 445
+  ClientWidth = 356
   Color = clBlack
   TransparentColorValue = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'Tahoma'
   Font.Style = []
   Icon.Data = {
@@ -89,13 +89,13 @@ object Form1: TForm1
   OnClose = FormClose
   OnCreate = FormCreate
   OnMouseDown = FormMouseDown
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 12
   object imgEmpty: TImage
-    Left = 64
-    Top = 8
-    Width = 154
-    Height = 154
+    Left = 48
+    Top = 6
+    Width = 116
+    Height = 116
     Picture.Data = {
       07544269746D6170460C0000424D460C0000000000003E000000280000009A00
       00009A0000000100010000000000080C00007412000074120000020000000000
@@ -199,10 +199,10 @@ object Form1: TForm1
     Visible = False
   end
   object imgDonut: TImage
-    Left = 64
-    Top = 328
-    Width = 154
-    Height = 154
+    Left = 48
+    Top = 246
+    Width = 116
+    Height = 116
     Picture.Data = {
       07544269746D617096300000424D963000000000000076000000280000009A00
       00009A0000000100040000000000203000007412000074120000100000000000
@@ -597,10 +597,10 @@ object Form1: TForm1
     Visible = False
   end
   object imgCross: TImage
-    Left = 64
-    Top = 168
-    Width = 154
-    Height = 154
+    Left = 48
+    Top = 126
+    Width = 116
+    Height = 116
     Picture.Data = {
       07544269746D617096300000424D963000000000000076000000280000009A00
       00009A0000000100040000000000203000007412000074120000100000000000
@@ -1040,6 +1040,10 @@ object Form1: TForm1
       object mniLevel4: TMenuItem
         Caption = 'Level 4'
         OnClick = mniLevel4Click
+      end
+      object mniLevel5: TMenuItem
+        Caption = 'Level 5'
+        OnClick = mniLevel5Click
       end
     end
   end
